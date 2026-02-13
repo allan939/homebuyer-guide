@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free First-Time Homebuyer Guide - Houston</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 650px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .book-mockup {
+            margin: 30px 0 20px;
+            font-size: 100px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .benefits {
+            margin-bottom: 35px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .check-icon {
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .benefit-text {
+            font-size: 1.05em;
+            color: #333;
+            line-height: 1.5;
+            padding-top: 2px;
+        }
+        
+        .form-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .form-title {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .form-subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+        
+        .google-form-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .google-form-container iframe {
+            width: 100%;
+            border: none;
+            min-height: 600px;
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .trust-badge-icon {
+            font-size: 1.3em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 30px;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: #856404;
+            line-height: 1.8;
+        }
+        
+        .instructions code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d63384;
+        }
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.7em;
+            }
+            
+            .hero p {
+                font-size: 1em;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .google-form-container iframe {
+                min-height: 700px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="badge">🔥 100% Free - No Obligation</div>
+            <div class="book-mockup">📘</div>
+            <h1>Your Free First-Time Homebuyer Guide</h1>
+            <p>Everything you need to know about buying your first home in Houston - without the fluff</p>
+        </div>
+        
+        <div class="content">
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>How much house can you actually afford?</strong> Real numbers, not guesses
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Houston down payment assistance programs</strong> Get up to $15,000 in help
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Step-by-step timeline</strong> From pre-approval to closing day
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>East Houston neighborhoods under $300k</strong> Where to get the most for your money
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <div class="benefit-text">
+                        <strong>Credit score requirements</strong> What you really need (hint: it's lower than you think)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="form-title">Get Your Free Guide Now</h2>
+                <p class="form-subtitle">Takes 30 seconds. Delivered instantly to your email.</p>
+                
+                <div class="google-form-container">
+                    <!-- REPLACE THIS IFRAME WITH YOUR GOOGLE FORM EMBED CODE -->
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" width="640" height="1216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>            </div>
+            
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">🔒</span>
+                    <span>Your info is safe</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">📧</span>
+                    <span>No spam ever</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">⚡</span>
+                    <span>Instant delivery</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer">
+            Made with ❤️ for Houston homebuyers<br>
+            <strong>Allan Vega</strong> - East Houston Realtor<br>
+            📱 281-865-7146 | 📧 allan@askozzie.com 
+        </div>
+    </div>
+</body>
+</html>
