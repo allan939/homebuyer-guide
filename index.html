@@ -258,6 +258,7 @@
             margin-bottom: 12px;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .form-description {
@@ -266,13 +267,14 @@
             font-size: 16px;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .form-container {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 40px;
-            max-width: 600px;
+            padding: 20px;
+            max-width: 700px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -281,7 +283,6 @@
         /* Google Form Embed Styling */
         .google-form-wrapper {
             width: 100%;
-            min-height: 600px;
             border-radius: 8px;
             overflow: hidden;
             background: white;
@@ -289,8 +290,9 @@
 
         .google-form-wrapper iframe {
             width: 100%;
-            min-height: 600px;
+            height: 1250px;
             border: none;
+            display: block;
         }
 
         .trust-badges {
@@ -413,7 +415,11 @@
             }
 
             .form-container {
-                padding: 32px 24px;
+                padding: 16px;
+            }
+
+            .google-form-wrapper iframe {
+                height: 1300px;
             }
 
             .agent-section {
@@ -485,9 +491,8 @@
             <p class="form-description">Complete in 30 seconds. Delivered instantly to your inbox.</p>
 
             <div class="form-container">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" width="640" height="1216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 <div class="google-form-wrapper">
-                    <iframe src="YOUR_GOOGLE_FORM_EMBED_URL_HERE" 
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" 
                             frameborder="0" 
                             marginheight="0" 
                             marginwidth="0">
