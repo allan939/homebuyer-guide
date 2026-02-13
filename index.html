@@ -12,8 +12,8 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -25,67 +25,100 @@
             max-width: 650px;
             width: 100%;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.08);
             overflow: hidden;
         }
         
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
-            padding: 50px 30px;
+            padding: 60px 40px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         
         .badge {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.8em;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
         .hero h1 {
-            font-size: 2.2em;
-            margin-bottom: 15px;
+            font-size: 2.4em;
+            margin-bottom: 18px;
             line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .hero p {
             font-size: 1.15em;
-            opacity: 0.95;
+            opacity: 0.9;
             line-height: 1.6;
+            font-weight: 300;
         }
         
         .book-mockup {
-            margin: 30px 0 20px;
-            font-size: 100px;
+            margin: 35px 0 25px;
+            font-size: 80px;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.15));
         }
         
         .content {
-            padding: 40px 30px;
+            padding: 50px 40px;
         }
         
         .benefits {
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
         
         .benefit-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 18px;
+            margin-bottom: 22px;
+            padding: 18px;
+            background: #f9fafb;
+            border-radius: 12px;
+            border-left: 4px solid #2d2d2d;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: #f5f7fa;
+            transform: translateX(5px);
         }
         
         .check-icon {
-            background: #667eea;
+            background: #2d2d2d;
             color: white;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -97,36 +130,45 @@
         
         .benefit-text {
             font-size: 1.05em;
-            color: #333;
-            line-height: 1.5;
-            padding-top: 2px;
+            color: #2d2d2d;
+            line-height: 1.6;
+            padding-top: 4px;
+        }
+        
+        .benefit-text strong {
+            color: #1a1a1a;
+            font-weight: 600;
         }
         
         .form-section {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid #e8e8e8;
         }
         
         .form-title {
-            font-size: 1.3em;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 1.4em;
+            color: #1a1a1a;
+            margin-bottom: 12px;
             font-weight: 700;
+            letter-spacing: -0.3px;
         }
         
         .form-subtitle {
             color: #666;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-size: 0.95em;
+            font-weight: 300;
         }
         
         .google-form-container {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #e8e8e8;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
         
         .google-form-container iframe {
@@ -138,72 +180,96 @@
         .trust-badges {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #e0e0e0;
+            gap: 30px;
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 2px solid #e8e8e8;
         }
         
         .trust-badge {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             color: #666;
             font-size: 0.9em;
+            font-weight: 500;
         }
         
         .trust-badge-icon {
-            font-size: 1.3em;
+            font-size: 1.4em;
         }
         
         .footer {
             text-align: center;
-            padding: 25px;
-            background: #f8f9fa;
-            color: #666;
+            padding: 35px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: rgba(255,255,255,0.8);
             font-size: 0.85em;
-            line-height: 1.6;
+            line-height: 1.8;
+        }
+        
+        .footer strong {
+            color: white;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1em;
         }
         
         .instructions {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 30px;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff4d4 100%);
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 40px;
         }
         
         .instructions h3 {
-            color: #856404;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            color: #b8860b;
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 700;
         }
         
         .instructions ol {
             margin-left: 20px;
-            color: #856404;
-            line-height: 1.8;
+            color: #5a4a1f;
+            line-height: 1.9;
         }
         
         .instructions code {
-            background: #fff;
-            padding: 2px 6px;
+            background: white;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-family: monospace;
-            color: #d63384;
+            font-family: 'Monaco', monospace;
+            color: #b8860b;
+            font-size: 0.9em;
         }
+
         @media (max-width: 600px) {
+            .hero {
+                padding: 45px 30px;
+            }
+            
             .hero h1 {
-                font-size: 1.7em;
+                font-size: 1.8em;
             }
             
             .hero p {
                 font-size: 1em;
             }
             
+            .content {
+                padding: 40px 25px;
+            }
+            
+            .form-section {
+                padding: 30px 25px;
+            }
+            
             .trust-badges {
                 flex-direction: column;
-                gap: 12px;
+                gap: 15px;
             }
             
             .google-form-container iframe {
@@ -215,10 +281,12 @@
 <body>
     <div class="container">
         <div class="hero">
-            <div class="badge">🔥 100% Free - No Obligation</div>
-            <div class="book-mockup">📘</div>
-            <h1>Your Free First-Time Homebuyer Guide</h1>
-            <p>Everything you need to know about buying your first home in Houston - without the fluff</p>
+            <div class="hero-content">
+                <div class="badge">✨ Complimentary Guide</div>
+                <div class="book-mockup">📘</div>
+                <h1>Houston First-Time Homebuyer Guide</h1>
+                <p>Your comprehensive roadmap to homeownership in Houston's most desirable neighborhoods</p>
+            </div>
         </div>
         
         <div class="content">
@@ -226,67 +294,82 @@
                 <div class="benefit-item">
                     <div class="check-icon">✓</div>
                     <div class="benefit-text">
-                        <strong>How much house can you actually afford?</strong> Real numbers, not guesses
+                        <strong>Financial clarity you can trust.</strong> Understand exactly what you can afford with real numbers and proven calculations
                     </div>
                 </div>
                 
                 <div class="benefit-item">
                     <div class="check-icon">✓</div>
                     <div class="benefit-text">
-                        <strong>Houston down payment assistance programs</strong> Get up to $15,000 in help
+                        <strong>Exclusive Houston assistance programs.</strong> Access up to $15,000 in down payment support you didn't know existed
                     </div>
                 </div>
                 
                 <div class="benefit-item">
                     <div class="check-icon">✓</div>
                     <div class="benefit-text">
-                        <strong>Step-by-step timeline</strong> From pre-approval to closing day
+                        <strong>A proven step-by-step process.</strong> Navigate from pre-approval to closing with confidence and clarity
                     </div>
                 </div>
                 
                 <div class="benefit-item">
                     <div class="check-icon">✓</div>
                     <div class="benefit-text">
-                        <strong>East Houston neighborhoods under $300k</strong> Where to get the most for your money
+                        <strong>East Houston's hidden gems.</strong> Discover emerging neighborhoods under $300k with exceptional value and growth potential
                     </div>
                 </div>
                 
                 <div class="benefit-item">
                     <div class="check-icon">✓</div>
                     <div class="benefit-text">
-                        <strong>Credit score requirements</strong> What you really need (hint: it's lower than you think)
+                        <strong>Credit requirements demystified.</strong> Learn the actual score you need (often lower than you'd expect)
                     </div>
                 </div>
             </div>
             
             <div class="form-section">
-                <h2 class="form-title">Get Your Free Guide Now</h2>
-                <p class="form-subtitle">Takes 30 seconds. Delivered instantly to your email.</p>
+                <h2 class="form-title">Request Your Complimentary Guide</h2>
+                <p class="form-subtitle">Complete in 30 seconds. Delivered instantly to your inbox.</p>
                 
                 <div class="google-form-container">
                     <!-- REPLACE THIS IFRAME WITH YOUR GOOGLE FORM EMBED CODE -->
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" width="640" height="1216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>            </div>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" width="640" height="1216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>            </div>                </div>
+            </div>
             
             <div class="trust-badges">
                 <div class="trust-badge">
                     <span class="trust-badge-icon">🔒</span>
-                    <span>Your info is safe</span>
+                    <span>Secure & Private</span>
                 </div>
                 <div class="trust-badge">
                     <span class="trust-badge-icon">📧</span>
-                    <span>No spam ever</span>
+                    <span>No Spam, Ever</span>
                 </div>
                 <div class="trust-badge">
                     <span class="trust-badge-icon">⚡</span>
-                    <span>Instant delivery</span>
+                    <span>Instant Access</span>
                 </div>
             </div>
         </div>
-    
+        
+        <div class="instructions">
+            <h3>📝 Setup Instructions (Remove this section after setup):</h3>
+            <ol>
+                <li>Create your Google Form at <code>forms.google.com</code></li>
+                <li>Click the <strong>Send</strong> button in your form</li>
+                <li>Click the <strong>&lt;&gt;</strong> (embed) icon</li>
+                <li>Copy the embed code that looks like: <code>&lt;iframe src="https://docs.google.com/forms/d/e/..."&gt;</code></li>
+                <li>Replace line 242 in this HTML file with your embed code</li>
+                <li>Delete this yellow instructions box</li>
+                <li>Update the footer with your contact info</li>
+                <li>Upload to GitHub and use the URL in your Facebook ad!</li>
+            </ol>
+        </div>
+        
         <div class="footer">
-            Made with ❤️ for Houston homebuyers<br>
-            <strong>Allan Vega</strong> - East Houston Realtor<br>
-            📱 281-865-7146 | 📧 allan@askozzie.com 
+            <strong>[YOUR NAME HERE]</strong>
+            East Houston Luxury & Modern Homes Specialist<br>
+            📱 [YOUR PHONE] | 📧 [YOUR EMAIL]
         </div>
     </div>
 </body>
