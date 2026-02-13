@@ -1,330 +1,537 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free First-Time Homebuyer Guide - Houston</title>
+    <title>Free First-Time Homebuyer Guide - Houston | Allan Vega</title>
+    <meta name="description" content="Your comprehensive roadmap to homeownership in Houston's most desirable neighborhoods. Free guide with financial clarity, step-by-step process, and Houston's hidden gems.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #1a472a;
+            --primary-light: #2d5f3f;
+            --accent: #d4af37;
+            --accent-light: #f0d98d;
+            --text: #1a1a1a;
+            --text-light: #4a4a4a;
+            --background: #fefdfb;
+            --card-bg: #ffffff;
+            --shadow: rgba(26, 71, 42, 0.08);
+            --shadow-lg: rgba(26, 71, 42, 0.12);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--background);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 650px;
+
+        /* Decorative Background */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.08);
-            overflow: hidden;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--primary) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, var(--accent) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
         }
-        
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 32px 0;
+            background: var(--card-bg);
+            box-shadow: 0 2px 8px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .contact-quick {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .contact-quick a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-quick a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
+            padding: 80px 0 60px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(36px, 5vw, 58px);
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--text-light);
+            margin-bottom: 48px;
+            max-width: 700px;
+        }
+
+        /* Benefits Grid */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .benefit-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .benefit-card:nth-child(1) { animation-delay: 0.1s; }
+        .benefit-card:nth-child(2) { animation-delay: 0.2s; }
+        .benefit-card:nth-child(3) { animation-delay: 0.3s; }
+        .benefit-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px var(--shadow-lg);
+            border-color: var(--accent-light);
+        }
+
+        .benefit-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 24px;
+            padding: 64px 48px;
+            margin-bottom: 80px;
+            box-shadow: 0 20px 60px var(--shadow-lg);
             position: relative;
             overflow: hidden;
+            animation: fadeIn 0.8s ease-out 0.5s both;
         }
-        
-        .hero::before {
+
+        .form-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
         }
-        
-        .hero-content {
+
+        .form-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(28px, 4vw, 36px);
+            color: #ffffff;
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
         }
-        
-        .badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.8em;
-            font-weight: 600;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        
-        .hero h1 {
-            font-size: 2.4em;
-            margin-bottom: 18px;
-            line-height: 1.2;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .hero p {
-            font-size: 1.15em;
-            opacity: 0.9;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-        
-        .book-mockup {
-            margin: 35px 0 25px;
-            font-size: 80px;
-            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.15));
-        }
-        
-        .content {
-            padding: 50px 40px;
-        }
-        
-        .benefits {
+
+        .form-description {
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 40px;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
         }
-        
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            margin-bottom: 22px;
-            padding: 18px;
-            background: #f9fafb;
-            border-radius: 12px;
-            border-left: 4px solid #2d2d2d;
-            transition: all 0.3s ease;
-        }
-        
-        .benefit-item:hover {
-            background: #f5f7fa;
-            transform: translateX(5px);
-        }
-        
-        .check-icon {
-            background: #2d2d2d;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-        
-        .benefit-text {
-            font-size: 1.05em;
-            color: #2d2d2d;
-            line-height: 1.6;
-            padding-top: 4px;
-        }
-        
-        .benefit-text strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-        
-        .form-section {
-            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-            padding: 40px;
+
+        .form-container {
+            background: var(--card-bg);
             border-radius: 16px;
-            margin-bottom: 30px;
-            border: 1px solid #e8e8e8;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-        
-        .form-title {
-            font-size: 1.4em;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-        }
-        
-        .form-subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 0.95em;
-            font-weight: 300;
-        }
-        
-        .google-form-container {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid #e8e8e8;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-        
-        .google-form-container iframe {
+
+        /* Google Form Embed Styling */
+        .google-form-wrapper {
             width: 100%;
-            border: none;
-            min-height: 800px;
+            min-height: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
         }
-        
+
+        .google-form-wrapper iframe {
+            width: 100%;
+            min-height: 600px;
+            border: none;
+        }
+
         .trust-badges {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 35px;
-            padding-top: 30px;
-            border-top: 2px solid #e8e8e8;
+            gap: 32px;
+            margin-top: 24px;
+            flex-wrap: wrap;
         }
-        
+
         .trust-badge {
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #666;
-            font-size: 0.9em;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 13px;
             font-weight: 500;
         }
-        
-        .trust-badge-icon {
-            font-size: 1.4em;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 35px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: rgba(255,255,255,0.8);
-            font-size: 0.85em;
-            line-height: 1.8;
-        }
-        
-        .footer strong {
-            color: white;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 1.1em;
+
+        .trust-badge span {
+            font-size: 18px;
         }
 
-        @media (max-width: 600px) {
-            .hero {
-                padding: 45px 30px;
+        /* Agent Section */
+        .agent-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 48px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px var(--shadow);
+            border-left: 6px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .agent-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .agent-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            color: #ffffff;
+            box-shadow: 0 8px 24px var(--shadow-lg);
+        }
+
+        .agent-info h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26px;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .agent-title {
+            color: var(--text-light);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .agent-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .agent-detail {
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .agent-detail a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .agent-detail a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+            font-size: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                justify-content: center;
+                text-align: center;
             }
-            
-            .hero h1 {
-                font-size: 1.8em;
-            }
-            
-            .hero p {
-                font-size: 1em;
-            }
-            
-            .content {
-                padding: 40px 25px;
-            }
-            
-            .form-section {
-                padding: 30px 25px;
-            }
-            
-            .trust-badges {
+
+            .contact-quick {
                 flex-direction: column;
-                gap: 15px;
+                gap: 8px;
             }
-            
-            .google-form-container iframe {
-                min-height: 900px;
+
+            .hero {
+                padding: 40px 0;
+            }
+
+            .form-section {
+                padding: 40px 24px;
+            }
+
+            .form-container {
+                padding: 32px 24px;
+            }
+
+            .agent-section {
+                padding: 32px 24px;
+            }
+
+            .agent-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+
+            .agent-details {
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <div class="hero-content">
-                <div class="badge">✨ Complimentary Guide</div>
-                <div class="book-mockup">📘</div>
-                <h1>Houston First-Time Homebuyer Guide</h1>
-                <p>Your comprehensive roadmap to homeownership in Houston's most desirable neighborhoods</p>
+    <div class="bg-decoration"></div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="badge">
+                    <span>✨</span>
+                    Complimentary Guide
+                </div>
+                <div class="contact-quick">
+                    <a href="tel:281-865-7146">📱 281-865-7146</a>
+                    <a href="mailto:allan@askozzie.com">📧 allan@askozzie.com</a>
+                </div>
             </div>
         </div>
-        
-        <div class="content">
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-icon">🏡</div>
+            <h1>Houston First-Time Homebuyer Guide</h1>
+            <p class="subtitle">Your comprehensive roadmap to homeownership in Houston's most desirable neighborhoods</p>
+
             <div class="benefits">
-                <div class="benefit-item">
-                    <div class="check-icon">✓</div>
-                    <div class="benefit-text">
-                        <strong>Financial clarity you can trust.</strong> Understand exactly what you can afford with real numbers and proven calculations
-                    </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">💰</span>
+                    <h3>Financial clarity you can trust</h3>
+                    <p>Understand exactly what you can afford with real numbers and proven calculations</p>
                 </div>
-                
-                
-                <div class="benefit-item">
-                    <div class="check-icon">✓</div>
-                    <div class="benefit-text">
-                        <strong>A proven step-by-step process.</strong> Navigate from pre-approval to closing with confidence and clarity
-                    </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🗺️</span>
+                    <h3>A proven step-by-step process</h3>
+                    <p>Navigate from pre-approval to closing with confidence and clarity</p>
                 </div>
-                
-                <div class="benefit-item">
-                    <div class="check-icon">✓</div>
-                    <div class="benefit-text">
-                        <strong> Houston's hidden gems.</strong> Discover emerging neighborhoods under $300k with exceptional value and growth potential
-                    </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🏘️</span>
+                    <h3>Houston's hidden gems</h3>
+                    <p>Discover emerging neighborhoods under $300k with exceptional value and growth potential</p>
                 </div>
-                
-                <div class="benefit-item">
-                    <div class="check-icon">✓</div>
-                    <div class="benefit-text">
-                        <strong>Credit requirements demystified.</strong> Learn the actual score you need (often lower than you'd expect)
+                <div class="benefit-card">
+                    <span class="benefit-icon">📊</span>
+                    <h3>Credit requirements demystified</h3>
+                    <p>Learn the actual score you need (often lower than you'd expect)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Request Your Complimentary Guide</h2>
+            <p class="form-description">Complete in 30 seconds. Delivered instantly to your inbox.</p>
+
+            <div class="form-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" width="640" height="1216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <div class="google-form-wrapper">
+                    <iframe src="YOUR_GOOGLE_FORM_EMBED_URL_HERE" 
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Loading…
+                    </iframe>
+                </div>
+
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <span>🔒</span>
+                        Secure & Private
+                    </div>
+                    <div class="trust-badge">
+                        <span>📧</span>
+                        No Spam, Ever
+                    </div>
+                    <div class="trust-badge">
+                        <span>⚡</span>
+                        Instant Access
                     </div>
                 </div>
             </div>
-            
-            <div class="form-section">
-                <h2 class="form-title">Request Your Complimentary Guide</h2>
-                <p class="form-subtitle">Complete in 30 seconds. Delivered instantly to your inbox.</p>
-                
-                <div class="google-form-container">
-                    <!-- REPLACE THIS IFRAME WITH YOUR GOOGLE FORM EMBED CODE -->
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetMeTwFf3ZXQt0eTDd8p_J9iHXcu1f-cKAHbFIjZ_lgmiDjA/viewform?embedded=true" width="640" height="1216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </section>
+
+        <section class="agent-section">
+            <div class="agent-content">
+                <div class="agent-avatar">👤</div>
+                <div class="agent-info">
+                    <h3>Allan Vega</h3>
+                    <p class="agent-title">Houston Realtor® | Market Strategist</p>
+                    <div class="agent-details">
+                        <div class="agent-detail">🏢 AEA Realty | License #777820</div>
+                        <div class="agent-detail">📱 <a href="tel:281-865-7146">281-865-7146</a> | <a href="tel:832-403-3681">(832) 403-3681</a></div>
+                        <div class="agent-detail">📧 <a href="mailto:allan@askozzie.com">allan@askozzie.com</a></div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="trust-badges">
-                <div class="trust-badge">
-                    <span class="trust-badge-icon">🔒</span>
-                    <span>Secure & Private</span>
-                </div>
-                <div class="trust-badge">
-                    <span class="trust-badge-icon">📧</span>
-                    <span>No Spam, Ever</span>
-                </div>
-                <div class="trust-badge">
-                    <span class="trust-badge-icon">⚡</span>
-                    <span>Instant Access</span>
-                </div>
-            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Allan Vega | AEA Realty | All Rights Reserved</p>
         </div>
-        
-        <div class="footer">
-            <strong>Allan Vega</strong>
-            Houston Realtor® | Market Strategist<br>
-            AEA Realty | License #777820<br>
-            📱 281-865-7146 | 📱 (832) 403-3681<br>
-            📧 allan@askozzie.com
-        </div>
-    </div>
+    </footer>
 </body>
 </html>
