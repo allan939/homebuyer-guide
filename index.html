@@ -6,6 +6,34 @@
     <title>Free First-Time Homebuyer Guide - Houston | Allan Vega</title>
     <meta name="description" content="Your comprehensive roadmap to homeownership in Houston's most desirable neighborhoods. Free guide with financial clarity, step-by-step process, and Houston's hidden gems.">
     
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1792763298349619');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1792763298349619&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L3ZXGG3JZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4L3ZXGG3JZ');
+    </script>
+    <!-- End Google Analytics -->
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -538,5 +566,95 @@
             <p>&copy; 2024 Allan Vega | AEA Realty | All Rights Reserved</p>
         </div>
     </footer>
+    
+    <!-- Conversion Tracking for Form Submissions -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('✅ Tracking script loaded');
+        
+        // Detect Google Form iframe
+        var iframe = document.querySelector('iframe[src*="google.com/forms"]');
+        
+        if (iframe) {
+          console.log('✅ Google Form iframe detected');
+          
+          // Track when user interacts with the form
+          var formSection = document.querySelector('.form-section');
+          var trackedSubmission = false;
+          
+          // Method 1: Track significant engagement time
+          var formStartTime = Date.now();
+          var formEngaged = false;
+          
+          iframe.addEventListener('load', function() {
+            console.log('✅ Google Form loaded');
+            
+            // After 10 seconds of engagement, assume form interaction
+            setTimeout(function() {
+              if (!trackedSubmission && document.hasFocus()) {
+                formEngaged = true;
+                console.log('⏱️ User engaged with form for 10+ seconds');
+              }
+            }, 10000);
+          });
+          
+          // Method 2: Track when user leaves (likely after submission)
+          window.addEventListener('beforeunload', function() {
+            if (formEngaged && !trackedSubmission) {
+              fireLeadEvent();
+              trackedSubmission = true;
+            }
+          });
+          
+          // Method 3: Track visibility change (form submission often causes brief hide)
+          document.addEventListener('visibilitychange', function() {
+            if (document.hidden && formEngaged && !trackedSubmission) {
+              setTimeout(function() {
+                if (!trackedSubmission) {
+                  fireLeadEvent();
+                  trackedSubmission = true;
+                }
+              }, 500);
+            }
+          });
+          
+          // Method 4: Backup click tracking in form area
+          if (formSection) {
+            var clickCount = 0;
+            formSection.addEventListener('click', function() {
+              clickCount++;
+              // If they've clicked 3+ times (filling form), track after delay
+              if (clickCount >= 3 && !trackedSubmission) {
+                setTimeout(function() {
+                  if (!trackedSubmission) {
+                    fireLeadEvent();
+                    trackedSubmission = true;
+                  }
+                }, 2000);
+              }
+            });
+          }
+        }
+        
+        function fireLeadEvent() {
+          // Fire Facebook Lead event
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Lead');
+            console.log('✅ Facebook Lead event fired');
+          }
+          
+          // Fire Google Analytics Lead event
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'generate_lead', {
+              'event_category': 'form',
+              'event_label': 'homebuyer_guide_download',
+              'value': 1
+            });
+            console.log('✅ Google Analytics Lead event fired');
+          }
+        }
+      });
+    </script>
+
 </body>
 </html>
