@@ -1,0 +1,53 @@
+name: Claude Code Assistant
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  claude:
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'issues' && contains(github.event.issue.body, '@claude')) ||
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.body, '@claude'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Claude Code Action
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          custom_instructions: |
+            You are an AI assistant helping maintain a real estate landing page for Allan, 
+            a Houston-based Realtor with AEA Realty specializing in new construction homes, 
+            first-time homebuyers, and VA clients.
+
+            CONTEXT:
+            - Brand: "Love Your Dirt" 
+            - Market: Houston, TX
+            - Main file: index.html (single-page landing page / homebuyer guide)
+            - Serves both English and Spanish-speaking clients
+
+            COMMON TASKS YOU MAY BE ASKED TO DO:
+            - Edit text content, headlines, or CTAs
+            - Fix styling or layout issues
+            - Add new sections or update existing ones
+
+            RULES:
+            - Always preserve the existing branding (green, gold, white color scheme)
+            - Keep the tone friendly, approachable, and educational for first-time buyers
+            - Do not remove any existing sections unless explicitly told to
+            - All changes go directly to index.html unless told otherwise
