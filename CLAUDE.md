@@ -47,6 +47,8 @@ This is a **zero-dependency, no-build static site**. There is no package.json, n
 - Update the phone number or agent name if contact info changes
 - Do **not** add complex CSS/JS — these pages are intentionally minimal; users see them for under 2 seconds
 
+**Agent info in redirect page bodies:** Both pages display brief agent contact info in the `<body>` while the redirect is in progress. Note there is a minor inconsistency between them — `guide.html` shows "Allan Vega – Realtor® | AEA Realty | 📲 281-865-7146" while `new-construction-guide.html` omits "AEA Realty". Keep them in sync when updating contact info.
+
 **Note:** These pages are the delivery mechanism for the guides. The lead-capture form in `index.html` does **not** redirect to these pages directly — the guide link is typically delivered via the follow-up email sent by the Google Apps Script backend. These pages may be linked from email campaigns, QR codes, or social ads independently.
 
 ---
@@ -108,12 +110,32 @@ The page is divided into these sections (top to bottom):
 2. **`.hero` section** — Floating house emoji, H1 title, subtitle, four benefit cards
 3. **`.form-section`** — Dark green gradient background containing the lead capture form
 4. **`.agent-section`** — Agent bio card (Allan Vega) with contact details
-5. **`<footer>`** — Copyright line (update the year annually; currently reads `© 2025`)
+5. **`<footer>`** — Copyright line (update the year annually; currently reads `© 2025` — **needs updating to 2026**)
 
 ### Decorative Elements
 
 - **`.bg-decoration`** — A `position: fixed` full-page `<div>` with `z-index: -1` and `opacity: 0.03` that renders a subtle two-color dot pattern using `radial-gradient`. Do not remove it — it adds warmth to the off-white background without affecting readability.
 - **`.form-section::before`** — A CSS `::before` pseudo-element that overlays a faint repeating SVG cross/plus pattern (inline `data:image/svg+xml`) on the dark green form background. `opacity: 0.4`. Do not remove it.
+
+### Agent Section (`.agent-section`)
+
+The agent card contains a circular avatar (`<div class="agent-avatar">`) displaying the `👤` emoji placeholder (no photo currently), the agent's name, title, and contact details:
+
+- **Name (`<h3>`):** Allan Vega
+- **Title (`.agent-title`):** Houston Realtor® | Market Strategist
+- **Brokerage:** AEA Realty | License #777820
+- **Phones:** 281-865-7146 (primary) | (832) 403-3681 (secondary)
+- **Email:** allan@askozzie.com
+
+### Trust Badges (`.trust-badges`)
+
+Three trust signals displayed below the form container (inside `.form-section`, outside `#leadForm`):
+
+1. 🔒 Secure & Private
+2. 📧 No Spam, Ever
+3. ⚡ Instant Access
+
+These are decorative/reassurance elements. Do not remove them.
 
 ### Benefit Cards (`.benefit-card`)
 
@@ -129,8 +151,9 @@ Four cards in a responsive CSS Grid (`repeat(auto-fit, minmax(280px, 1fr))`), ea
 ## Lead Capture Form
 
 **Form ID:** `#leadForm`
-**Submit button ID:** `#submitBtn`
-**Success message ID:** `#successMessage`
+**Submit button ID:** `#submitBtn` — initial text: `📩 Send My Free Guide`; changes to `⏳ Sending your guide...` while submitting
+**Success message ID:** `#successMessage` — full text after submission:
+> "Your Houston First-Time Homebuyer Guide is on its way to your inbox. Check your email in the next few minutes — and don't forget to check spam just in case!"
 
 ### Fields
 
@@ -147,6 +170,12 @@ Four cards in a responsive CSS Grid (`repeat(auto-fit, minmax(280px, 1fr))`), ea
 | `fbclid` | hidden | Auto-populated |
 | `source` | hidden | Fixed: "Landing Page" |
 | `propertyType` | hidden | Fixed: "First-Time Buyer" |
+
+**Dropdown option values (must match what the backend expects):**
+
+`#timeline` options: `ASAP` | `1-3 months` | `3-6 months` | `6-12 months` | `Just researching`
+
+`#budget` options: `Under $200k` | `$200k-$250k` | `$250k-$300k` | `$300k-$400k` | `$400k+`
 
 ### Form Submission Flow
 
@@ -236,7 +265,7 @@ The `claude.yml` workflow instructions reference this as a common task (DR Horto
 Change the `SCRIPT_URL` variable at the top of the `<script>` block (around line 645).
 
 ### Updating the footer copyright year
-The footer `<p>` tag currently reads `© 2025 Allan Vega | AEA Realty | All Rights Reserved`. Update the year as needed — no CSS or JS changes required, just edit the text.
+The footer `<p>` tag currently reads `© 2025 Allan Vega | AEA Realty | All Rights Reserved` — **this needs to be updated to 2026**. No CSS or JS changes required, just edit the text in `index.html` line 630.
 
 ---
 
@@ -255,7 +284,16 @@ Both scripts load asynchronously in `<head>`. The Lead event fires after success
 
 File: `.github/workflows/claude.yml`
 
-The workflow triggers when any issue, PR, or comment **contains `@claude`**. It runs `anthropics/claude-code-action@beta` with write permissions and custom instructions.
+The workflow triggers on four GitHub events, all requiring `@claude` to appear in the relevant text body:
+
+| Event | Trigger condition |
+|-------|------------------|
+| `issue_comment` (created) | Comment body contains `@claude` |
+| `pull_request_review_comment` (created) | Comment body contains `@claude` |
+| `issues` (opened) | Issue body contains `@claude` |
+| `pull_request` (opened) | PR body contains `@claude` |
+
+It runs `anthropics/claude-code-action@beta` with write permissions and custom instructions.
 
 **Permissions granted to the bot:**
 - `contents: write`
