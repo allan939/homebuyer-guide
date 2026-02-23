@@ -20,7 +20,9 @@ This file provides context for AI assistants (Claude Code, GitHub Actions Claude
 
 ```
 homebuyer-guide/
-├── index.html                    # The entire application — all HTML, CSS, and JS in one file
+├── index.html                    # Lead-capture landing page — all HTML, CSS, and JS in one file
+├── guide.html                    # Redirect page → Google Drive PDF (Houston Homebuyer Guide)
+├── new-construction-guide.html   # Redirect page → Google Drive PDF (New Construction Guide)
 ├── README.md                     # Minimal project description
 ├── CLAUDE.md                     # This file
 └── .github/
@@ -28,7 +30,24 @@ homebuyer-guide/
         └── claude.yml            # GitHub Actions: Claude Code bot triggered by @claude mentions
 ```
 
-This is a **zero-dependency, no-build static site**. There is no package.json, no npm, no bundler, no framework. The entire codebase is `index.html`.
+This is a **zero-dependency, no-build static site**. There is no package.json, no npm, no bundler, no framework.
+
+### Guide Redirect Pages
+
+`guide.html` and `new-construction-guide.html` are minimal HTML files (no CSS framework, no JS) that use a `<meta http-equiv="refresh">` tag to forward visitors to a hosted PDF on Google Drive after 1 second. Each also shows a brief "Opening your guide…" message with a manual fallback link in case the redirect fails.
+
+| File | Destination PDF |
+|------|----------------|
+| `guide.html` | Houston First-Time Homebuyer Guide (`19ttMZDUBfJAPjVg2Q7CJNFomzRYwqKeH`) |
+| `new-construction-guide.html` | Houston New Construction Guide (`1xpsDcq9ymX8Pl5EBJsj3pG9UQ1t0usuG`) |
+
+**When to edit these files:**
+- Update `content="1; url=..."` in the `<meta>` tag if the Google Drive file ID changes
+- Update the fallback `<a href="...">click here</a>` link to match
+- Update the phone number or agent name if contact info changes
+- Do **not** add complex CSS/JS — these pages are intentionally minimal; users see them for under 2 seconds
+
+**Note:** These pages are the delivery mechanism for the guides. The lead-capture form in `index.html` does **not** redirect to these pages directly — the guide link is typically delivered via the follow-up email sent by the Google Apps Script backend. These pages may be linked from email campaigns, QR codes, or social ads independently.
 
 ---
 
@@ -263,3 +282,4 @@ The workflow triggers when any issue, PR, or comment **contains `@claude`**. It 
 9. **Validate HTML:** Ensure the file remains valid HTML5 with no unclosed tags.
 10. **Do not change the form endpoint** unless explicitly asked — changing it will break lead capture.
 11. **Preserve decorative elements:** Do not remove `.bg-decoration` or `.form-section::before` — they are intentional design elements, not dead code.
+12. **Keep redirect pages minimal:** `guide.html` and `new-construction-guide.html` are intentionally plain. Do not add frameworks, styles, or scripts — users see them for under 2 seconds before being forwarded to Google Drive.
