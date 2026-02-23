@@ -692,6 +692,14 @@
             })
             .catch(function() {
                 // no-cors means we can't read the response — show success anyway
+                if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'form',
+                        event_label: 'homebuyer_guide_download',
+                        value: 1
+                    });
+                }
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
             });
