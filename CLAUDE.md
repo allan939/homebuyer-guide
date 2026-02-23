@@ -10,7 +10,7 @@ This file provides context for AI assistants (Claude Code, GitHub Actions Claude
 
 **Brand:** Love Your Dirt
 **Agent:** Allan Vega | AEA Realty | License #777820
-**Primary contact:** 281-865-7146 | allan@askozzie.com
+**Primary contact:** 281-865-7146 | (832) 403-3681 | allan@askozzie.com
 **Market:** Houston, TX (including Katy, Sugar Land, Cypress, The Woodlands)
 **Audience:** First-time homebuyers, new construction buyers, VA clients (English and Spanish speakers)
 
@@ -40,7 +40,7 @@ This is a **zero-dependency, no-build static site**. There is no package.json, n
 | Styles | Inline `<style>` block inside `index.html` — vanilla CSS3 with custom properties |
 | Scripts | Inline `<script>` blocks inside `index.html` — vanilla ES6 JavaScript |
 | Fonts | Google Fonts: **Playfair Display** (headings) + **DM Sans** (body) |
-| Form backend | Google Apps Script macro (POST endpoint, stores leads likely in Google Sheets) |
+| Form backend | Google Apps Script macro (POST endpoint, stores leads in Google Sheets) |
 | Analytics | Google Analytics 4 (`G-4L3ZXGG3JZ`) + Meta Pixel (`1792763298349619`) |
 | Hosting | Static file — served as-is from any web server |
 | CI/CD | GitHub Actions with `anthropics/claude-code-action@beta` |
@@ -85,11 +85,16 @@ This is a **zero-dependency, no-build static site**. There is no package.json, n
 
 The page is divided into these sections (top to bottom):
 
-1. **`<header>`** — Sticky top bar with "Complimentary Guide" badge and quick contact links
+1. **`<header>`** — Sticky top bar with "Complimentary Guide" badge and quick contact links (phone + email)
 2. **`.hero` section** — Floating house emoji, H1 title, subtitle, four benefit cards
 3. **`.form-section`** — Dark green gradient background containing the lead capture form
 4. **`.agent-section`** — Agent bio card (Allan Vega) with contact details
-5. **`<footer>`** — Copyright line
+5. **`<footer>`** — Copyright line (update the year annually; currently reads `© 2025`)
+
+### Decorative Elements
+
+- **`.bg-decoration`** — A `position: fixed` full-page `<div>` with `z-index: -1` and `opacity: 0.03` that renders a subtle two-color dot pattern using `radial-gradient`. Do not remove it — it adds warmth to the off-white background without affecting readability.
+- **`.form-section::before`** — A CSS `::before` pseudo-element that overlays a faint repeating SVG cross/plus pattern (inline `data:image/svg+xml`) on the dark green form background. `opacity: 0.4`. Do not remove it.
 
 ### Benefit Cards (`.benefit-card`)
 
@@ -143,6 +148,8 @@ Fire gtag('event', 'generate_lead', { category: 'form', label: 'homebuyer_guide_
 Hide #leadForm → show #successMessage
 ```
 
+**Note on `#successMessage`:** Its default state is `display: none` via CSS. The JS sets `style.display = 'block'` after submission. Do not alter this CSS default.
+
 **Google Apps Script endpoint:**
 ```
 https://script.google.com/a/macros/askozzie.com/s/AKfycbw8GCudDgtHqMee2qithkWXLxDYpAS5zebBF_NUm720Qrii3rzT0RuMIVyO6-CzQk4U/exec
@@ -189,7 +196,11 @@ Each card follows this template — maintain this structure:
 ```
 
 ### Updating agent contact info
-Agent details are in `.agent-section` (around line 612). Update the name, title, license, phone, and email links there. The header quick-contact links (around line 483) should stay in sync.
+Agent details are in `.agent-section` (around line 612). The agent currently has **two phone numbers**:
+- Primary: `281-865-7146`
+- Secondary: `(832) 403-3681`
+
+Both are linked with `href="tel:..."`. Update the name, title, license, phones, and email links there. The header quick-contact links (around line 483) show only the primary phone and email — keep those in sync when the primary contact changes.
 
 ### Updating timeline or budget dropdown options
 Edit the `<option>` elements inside `#timeline` and `#budget` selects. Keep the `value` attribute consistent with what should be sent to the form backend.
@@ -199,8 +210,14 @@ Edit the `<option>` elements inside `#timeline` and `#budget` selects. Keep the 
 - Add corresponding CSS inside the `<style>` block
 - Follow existing patterns: card-based layout, green/gold/white colors, `fadeIn` animation
 
+### Adding or updating builder deals / incentives
+The `claude.yml` workflow instructions reference this as a common task (DR Horton, Lennar, Perry Homes, etc.). When adding builder deal cards, follow the same card structure as `.benefit-card` (emoji icon, heading, description). If a dedicated builder-deals section is created, give it a new class name (e.g., `.builder-section`) and mirror the CSS pattern of `.agent-section` or `.form-section`. Always include an expiration date for promotional content.
+
 ### Updating the form endpoint
 Change the `SCRIPT_URL` variable at the top of the `<script>` block (around line 645).
+
+### Updating the footer copyright year
+The footer `<p>` tag currently reads `© 2025 Allan Vega | AEA Realty | All Rights Reserved`. Update the year as needed — no CSS or JS changes required, just edit the text.
 
 ---
 
@@ -219,7 +236,7 @@ Both scripts load asynchronously in `<head>`. The Lead event fires after success
 
 File: `.github/workflows/claude.yml`
 
-The workflow triggers when any issue, PR, or comment **contains `@claude`**. It runs `anthropics/claude-code-action@beta` with write permissions and custom instructions that mirror this CLAUDE.md.
+The workflow triggers when any issue, PR, or comment **contains `@claude`**. It runs `anthropics/claude-code-action@beta` with write permissions and custom instructions.
 
 **Permissions granted to the bot:**
 - `contents: write`
@@ -228,6 +245,8 @@ The workflow triggers when any issue, PR, or comment **contains `@claude`**. It 
 - `id-token: write`
 
 **Required secret:** `ANTHROPIC_API_KEY` must be set in the repository's GitHub secrets.
+
+**Note on `custom_instructions`:** The instructions embedded directly in `claude.yml` are a condensed subset (brand, market, common task types, basic rules) for space and brevity. This `CLAUDE.md` is the authoritative, full reference. When the two conflict, follow `CLAUDE.md`.
 
 ---
 
@@ -243,3 +262,4 @@ The workflow triggers when any issue, PR, or comment **contains `@claude`**. It 
 8. **Mobile-first:** Any new sections must be responsive. Use the existing 768px breakpoint.
 9. **Validate HTML:** Ensure the file remains valid HTML5 with no unclosed tags.
 10. **Do not change the form endpoint** unless explicitly asked — changing it will break lead capture.
+11. **Preserve decorative elements:** Do not remove `.bg-decoration` or `.form-section::before` — they are intentional design elements, not dead code.
