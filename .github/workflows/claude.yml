@@ -22,6 +22,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,6 +43,8 @@ jobs:
             - Serves both English and Spanish-speaking clients
 
             COMMON TASKS YOU MAY BE ASKED TO DO:
+            - Update builder incentives/deals (DR Horton, Lennar, Perry Homes, etc.)
+            - Update expiration dates on current promotions
             - Edit text content, headlines, or CTAs
             - Fix styling or layout issues
             - Add new sections or update existing ones
@@ -50,4 +53,5 @@ jobs:
             - Always preserve the existing branding (green, gold, white color scheme)
             - Keep the tone friendly, approachable, and educational for first-time buyers
             - Do not remove any existing sections unless explicitly told to
+            - When updating builder deals, keep the format consistent with existing deal cards
             - All changes go directly to index.html unless told otherwise
