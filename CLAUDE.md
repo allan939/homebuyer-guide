@@ -23,6 +23,8 @@ homebuyer-guide/
 ├── index.html                    # Lead-capture landing page — all HTML, CSS, and JS in one file
 ├── guide.html                    # Redirect page → Google Drive PDF (Houston Homebuyer Guide)
 ├── new-construction-guide.html   # Redirect page → Google Drive PDF (New Construction Guide)
+├── privacy-policy.html           # Privacy policy page (CCPA/GDPR compliance, ad platform requirement)
+├── allan-vega.jpg                # Agent headshot — referenced by index.html and OG image tags
 ├── README.md                     # Minimal project description
 ├── CLAUDE.md                     # This file
 └── .github/
@@ -108,9 +110,11 @@ The page is divided into these sections (top to bottom):
 
 1. **`<header>`** — Sticky top bar with "Complimentary Guide" badge and quick contact links (phone + email)
 2. **`.hero` section** — Floating house emoji, H1 title, subtitle, four benefit cards
-3. **`.form-section`** — Dark green gradient background containing the lead capture form
-4. **`.agent-section`** — Agent bio card (Allan Vega) with contact details
-5. **`<footer>`** — Copyright line (update the year annually; currently reads `© 2025` — **needs updating to 2026**)
+3. **`.social-proof-banner`** — Three key stats (families helped, rating, years experience) just above the form
+4. **`.form-section`** — Dark green gradient background containing the lead capture form
+5. **`.testimonials-section`** — Three client testimonial cards (replace placeholder text with real reviews)
+6. **`.agent-section`** — Agent bio card (Allan Vega) with real headshot (`allan-vega.jpg`) and contact details
+7. **`<footer>`** — Copyright line (`© 2026`) and Privacy Policy link
 
 ### Decorative Elements
 
@@ -119,7 +123,7 @@ The page is divided into these sections (top to bottom):
 
 ### Agent Section (`.agent-section`)
 
-The agent card contains a circular avatar (`<div class="agent-avatar">`) displaying the `👤` emoji placeholder (no photo currently), the agent's name, title, and contact details:
+The agent card contains a circular avatar (`<div class="agent-avatar">`) with an `<img>` tag pointing to `./allan-vega.jpg`. An `onerror` handler swaps in a `.agent-avatar-fallback` div (with the `👤` emoji) if the image fails to load. The agent's name, title, and contact details follow:
 
 - **Name (`<h3>`):** Allan Vega
 - **Title (`.agent-title`):** Houston Realtor® | Market Strategist
@@ -136,6 +140,25 @@ Three trust signals displayed below the form container (inside `.form-section`, 
 3. ⚡ Instant Access
 
 These are decorative/reassurance elements. Do not remove them.
+
+### Social Proof Banner (`.social-proof-banner`)
+
+A gold-tinted stat strip displayed just above `.form-section`. Three `.proof-stat` items separated by `.proof-divider` bars:
+
+1. **50+** Houston families helped
+2. **5★** Average client rating
+3. **10+** Years in Houston real estate
+
+Update these numbers as milestones are reached. Each stat has a `.stat-number` (Playfair Display, 32px) and a `.stat-label`.
+
+### Testimonials Section (`.testimonials-section`)
+
+Three `.testimonial-card` elements in a responsive grid (`repeat(auto-fit, minmax(280px, 1fr))`). Each card has:
+- `.testimonial-stars` — five gold star characters
+- `.testimonial-quote` — italic quote text
+- `.testimonial-author` — `.testimonial-name` + `.testimonial-meta` (role/city)
+
+**Important:** The current testimonials are placeholder content. Replace them with real client reviews before publishing. Keep the same HTML structure.
 
 ### Benefit Cards (`.benefit-card`)
 
@@ -154,6 +177,8 @@ Four cards in a responsive CSS Grid (`repeat(auto-fit, minmax(280px, 1fr))`), ea
 **Submit button ID:** `#submitBtn` — initial text: `📩 Send My Free Guide`; changes to `⏳ Sending your guide...` while submitting
 **Success message ID:** `#successMessage` — full text after submission:
 > "Your Houston First-Time Homebuyer Guide is on its way to your inbox. Check your email in the next few minutes — and don't forget to check spam just in case!"
+
+**Optional fields toggle:** A `<button id="optionalToggle">` toggles `<div id="optionalFields">` open/closed using a CSS class `.open` which switches from `display:none` to `display:contents`. The button's `aria-expanded` attribute and the `＋/－` icon (`#toggleIcon`) update on each click. Timeline, budget, area, and mustHaves fields are inside this collapsible group — keeping the form initially to just 3 required fields for lower friction.
 
 ### Fields
 
@@ -215,6 +240,7 @@ https://script.google.com/a/macros/askozzie.com/s/AKfycbw8GCudDgtHqMee2qithkWXLx
 - Layout: CSS Grid and Flexbox — no floats
 - Transitions: prefer CSS (`transition: all 0.3s`) over JS animations
 - Keyframe animations defined: `slideDown`, `fadeIn`, `float`, `fadeInUp`, `popIn`
+- **Accessibility:** `.skip-link` is visually hidden until focused (`:focus { top: 0 }`); all form inputs have `aria-required`, `autocomplete`, and `aria-label` where needed; decorative dividers have `aria-hidden="true"`; landmark regions use `aria-labelledby`
 
 ---
 
@@ -265,7 +291,16 @@ The `claude.yml` workflow instructions reference this as a common task (DR Horto
 Change the `SCRIPT_URL` variable at the top of the `<script>` block (around line 645).
 
 ### Updating the footer copyright year
-The footer `<p>` tag currently reads `© 2025 Allan Vega | AEA Realty | All Rights Reserved` — **this needs to be updated to 2026**. No CSS or JS changes required, just edit the text in `index.html` line 630.
+The footer currently reads `© 2026 Allan Vega | AEA Realty | All Rights Reserved`. Update the year as needed — no CSS or JS changes required, just edit the text. The footer also contains a link to `privacy-policy.html`.
+
+### Updating the agent headshot
+Replace `allan-vega.jpg` in the repository root with a new photo. The `<img>` in `.agent-avatar` has an `onerror` fallback that shows the `👤` emoji if the file is missing or fails to load. The OG image meta tags also reference this file — update the URL there too if hosting changes.
+
+### Updating testimonials
+Testimonial cards are in `.testimonials-section` inside `index.html`. Replace the placeholder names, quotes, and buyer types with real client reviews. Keep the existing card HTML structure (`.testimonial-card > .testimonial-stars + .testimonial-quote + .testimonial-author`).
+
+### Updating social proof stats
+The `.social-proof-banner` contains three `.proof-stat` blocks. Edit the `.stat-number` and `.stat-label` text directly in `index.html`. Update these as milestones are reached (e.g., "75+ Houston families helped").
 
 ---
 
@@ -321,3 +356,6 @@ It runs `anthropics/claude-code-action@beta` with write permissions and custom i
 10. **Do not change the form endpoint** unless explicitly asked — changing it will break lead capture.
 11. **Preserve decorative elements:** Do not remove `.bg-decoration` or `.form-section::before` — they are intentional design elements, not dead code.
 12. **Keep redirect pages minimal:** `guide.html` and `new-construction-guide.html` are intentionally plain. Do not add frameworks, styles, or scripts — users see them for under 2 seconds before being forwarded to Google Drive.
+13. **Testimonials must be real:** The testimonial cards in `.testimonials-section` currently contain placeholder copy. Replace them with verified real client reviews before driving paid traffic to the page.
+14. **Agent photo is required:** `allan-vega.jpg` must exist in the repo root for the headshot and OG image to work. A graceful fallback emoji is in place if the file is missing.
+15. **Privacy policy is live:** `privacy-policy.html` is required for Meta/Google ad compliance. Do not delete it. Update it if contact details or third-party services change.

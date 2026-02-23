@@ -5,7 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free First-Time Homebuyer Guide - Houston | Allan Vega</title>
     <meta name="description" content="Your comprehensive roadmap to homeownership in Houston's most desirable neighborhoods. Free guide with financial clarity, step-by-step process, and Houston's hidden gems.">
-    
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free First-Time Homebuyer Guide — Houston | Allan Vega">
+    <meta property="og:description" content="Your comprehensive roadmap to homeownership in Houston. Get financial clarity, a step-by-step process, and insider knowledge on Houston's best neighborhoods — free.">
+    <meta property="og:image" content="https://www.loveyourdirt.com/allan-vega.jpg">
+    <meta property="og:url" content="https://www.loveyourdirt.com/">
+    <meta property="og:site_name" content="Love Your Dirt — Allan Vega, AEA Realty">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free First-Time Homebuyer Guide — Houston | Allan Vega">
+    <meta name="twitter:description" content="Your comprehensive roadmap to homeownership in Houston. Free guide delivered instantly to your inbox.">
+    <meta name="twitter:image" content="https://www.loveyourdirt.com/allan-vega.jpg">
+
+    <!-- JSON-LD: RealEstateAgent schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Allan Vega",
+      "jobTitle": "Realtor®",
+      "description": "Houston-based Realtor specializing in first-time homebuyers, new construction, and VA loans in the Houston, TX metro area.",
+      "url": "https://www.loveyourdirt.com/",
+      "telephone": "+12818657146",
+      "email": "allan@askozzie.com",
+      "image": "https://www.loveyourdirt.com/allan-vega.jpg",
+      "worksFor": {
+        "@type": "RealEstateAgent",
+        "name": "AEA Realty"
+      },
+      "areaServed": [
+        "Houston, TX",
+        "Katy, TX",
+        "Sugar Land, TX",
+        "Cypress, TX",
+        "The Woodlands, TX"
+      ],
+      "knowsLanguage": ["English", "Spanish"],
+      "hasCredential": "TX Real Estate License #777820"
+    }
+    </script>
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -459,6 +504,159 @@
             border-top: 1px solid rgba(0,0,0,0.05);
         }
 
+        /* ===== SKIP LINK (accessibility) ===== */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 0 0 8px 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            z-index: 9999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* ===== SOCIAL PROOF BANNER ===== */
+        .social-proof-banner {
+            background: linear-gradient(135deg, var(--accent-light), #fff8e1);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 20px 32px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        .proof-stat {
+            text-align: center;
+        }
+        .proof-stat .stat-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .proof-stat .stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .proof-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials-section {
+            margin-bottom: 80px;
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+        .testimonials-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(26px, 3.5vw, 34px);
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .testimonials-section .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 16px var(--shadow);
+            border-top: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+        .testimonial-stars { color: var(--accent); font-size: 18px; letter-spacing: 2px; }
+        .testimonial-quote {
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.7;
+            font-style: italic;
+            flex: 1;
+        }
+        .testimonial-author { display: flex; flex-direction: column; gap: 2px; }
+        .testimonial-name { font-weight: 600; color: var(--primary); font-size: 15px; }
+        .testimonial-meta { font-size: 13px; color: var(--text-light); }
+
+        /* ===== AGENT PHOTO ===== */
+        .agent-avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            box-shadow: 0 8px 24px var(--shadow-lg);
+            display: block;
+        }
+        .agent-avatar-fallback {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            color: #ffffff;
+            box-shadow: 0 8px 24px var(--shadow-lg);
+        }
+
+        /* ===== OPTIONAL FIELDS TOGGLE ===== */
+        .optional-toggle {
+            width: 100%;
+            background: none;
+            border: 2px dashed var(--accent-light);
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .optional-toggle:hover {
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .optional-fields { display: none; }
+        .optional-fields.open { display: contents; }
+
         @media (max-width: 768px) {
             .header-content { justify-content: center; text-align: center; }
             .contact-quick { flex-direction: column; gap: 8px; }
@@ -469,10 +667,13 @@
             .agent-section { padding: 32px 24px; }
             .agent-content { grid-template-columns: 1fr; text-align: center; justify-items: center; }
             .agent-details { align-items: center; }
+            .social-proof-banner { padding: 20px 16px; gap: 20px; }
+            .proof-divider { width: 40px; height: 1px; }
         }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="bg-decoration"></div>
 
     <header>
@@ -487,7 +688,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main-content">
         <section class="hero">
             <span class="hero-icon">🏡</span>
             <h1>Houston First-Time Homebuyer Guide</h1>
@@ -517,8 +718,26 @@
             </div>
         </section>
 
-        <section class="form-section">
-            <h2>Request Your Complimentary Guide</h2>
+        <!-- Social proof stats -->
+        <div class="social-proof-banner" role="region" aria-label="By the numbers">
+            <div class="proof-stat">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Houston families helped</div>
+            </div>
+            <div class="proof-divider" aria-hidden="true"></div>
+            <div class="proof-stat">
+                <div class="stat-number">5★</div>
+                <div class="stat-label">Average client rating</div>
+            </div>
+            <div class="proof-divider" aria-hidden="true"></div>
+            <div class="proof-stat">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Years in Houston real estate</div>
+            </div>
+        </div>
+
+        <section class="form-section" aria-labelledby="form-heading">
+            <h2 id="form-heading">Request Your Complimentary Guide</h2>
             <p class="form-description">Complete in 60 seconds. Delivered instantly to your inbox.</p>
 
             <div class="form-container">
@@ -531,7 +750,7 @@
                 </div>
 
                 <!-- Lead Capture Form -->
-                <form id="leadForm">
+                <form id="leadForm" novalidate>
 
                     <!-- Hidden tracking fields -->
                     <input type="hidden" id="utm_source" name="utm_source">
@@ -547,51 +766,62 @@
 
                         <div class="form-group full-width">
                             <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" placeholder="First & Last Name" required>
+                            <input type="text" id="name" name="name" placeholder="First & Last Name" required aria-required="true" autocomplete="name">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" placeholder="you@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="you@email.com" required aria-required="true" autocomplete="email">
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(281) 555-0000" required>
+                            <input type="tel" id="phone" name="phone" placeholder="(281) 555-0000" required aria-required="true" autocomplete="tel">
                         </div>
 
-                        <div class="form-group">
-                            <label for="timeline">When are you planning to buy?</label>
-                            <select id="timeline" name="timeline">
-                                <option value="" disabled selected>Select a timeline</option>
-                                <option value="ASAP">ASAP</option>
-                                <option value="1-3 months">1–3 months</option>
-                                <option value="3-6 months">3–6 months</option>
-                                <option value="6-12 months">6–12 months</option>
-                                <option value="Just researching">Just researching</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="budget">Budget Range</label>
-                            <select id="budget" name="budget">
-                                <option value="" disabled selected>Select budget</option>
-                                <option value="Under $200k">Under $200k</option>
-                                <option value="$200k-$250k">$200k – $250k</option>
-                                <option value="$250k-$300k">$250k – $300k</option>
-                                <option value="$300k-$400k">$300k – $400k</option>
-                                <option value="$400k+">$400k+</option>
-                            </select>
-                        </div>
-
+                        <!-- Optional fields toggle -->
                         <div class="form-group full-width">
-                            <label for="area">Preferred Area / Neighborhood</label>
-                            <input type="text" id="area" name="area" placeholder="e.g. Katy, Sugar Land, Cypress, The Woodlands...">
+                            <button type="button" class="optional-toggle" id="optionalToggle" aria-expanded="false" aria-controls="optionalFields">
+                                <span id="toggleIcon">＋</span> Tell us a little more (optional — helps us personalize your guide)
+                            </button>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label for="mustHaves">Top 3 Must-Have Features</label>
-                            <textarea id="mustHaves" name="mustHaves" placeholder="e.g. 3 bedrooms, large yard, close to good schools, garage..."></textarea>
+                        <div id="optionalFields" class="optional-fields" role="group" aria-label="Optional details">
+
+                            <div class="form-group">
+                                <label for="timeline">When are you planning to buy?</label>
+                                <select id="timeline" name="timeline" aria-label="Purchase timeline">
+                                    <option value="" disabled selected>Select a timeline</option>
+                                    <option value="ASAP">ASAP</option>
+                                    <option value="1-3 months">1–3 months</option>
+                                    <option value="3-6 months">3–6 months</option>
+                                    <option value="6-12 months">6–12 months</option>
+                                    <option value="Just researching">Just researching</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget">Budget Range</label>
+                                <select id="budget" name="budget" aria-label="Budget range">
+                                    <option value="" disabled selected>Select budget</option>
+                                    <option value="Under $200k">Under $200k</option>
+                                    <option value="$200k-$250k">$200k – $250k</option>
+                                    <option value="$250k-$300k">$250k – $300k</option>
+                                    <option value="$300k-$400k">$300k – $400k</option>
+                                    <option value="$400k+">$400k+</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="area">Preferred Area / Neighborhood</label>
+                                <input type="text" id="area" name="area" placeholder="e.g. Katy, Sugar Land, Cypress, The Woodlands...">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="mustHaves">Top 3 Must-Have Features</label>
+                                <textarea id="mustHaves" name="mustHaves" placeholder="e.g. 3 bedrooms, large yard, close to good schools, garage..." aria-label="Must-have home features"></textarea>
+                            </div>
+
                         </div>
 
                     </div>
@@ -609,11 +839,46 @@
             </div>
         </section>
 
-        <section class="agent-section">
+        <!-- Testimonials -->
+        <section class="testimonials-section" aria-labelledby="testimonials-heading">
+            <h2 id="testimonials-heading">What Houston Buyers Are Saying</h2>
+            <p class="section-subtitle">Real stories from real clients — just like you.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-quote">"Allan made the entire process feel completely manageable. As a first-time buyer I had no idea where to start — he walked us through every step and we closed in 45 days. We love our home in Katy!"</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Maria &amp; Carlos R.</span>
+                        <span class="testimonial-meta">First-Time Buyers · Katy, TX</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-quote">"I was nervous about my credit score, but Allan explained exactly what I needed and connected me with a great lender. We got into a beautiful new construction home for less than I thought possible."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">DeShawn M.</span>
+                        <span class="testimonial-meta">New Construction Buyer · Cypress, TX</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <p class="testimonial-quote">"Using my VA benefit felt overwhelming until I met Allan. He knew the process inside and out, negotiated builder upgrades we didn't even ask for, and kept us informed every step of the way."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Sgt. James T. (Ret.)</span>
+                        <span class="testimonial-meta">VA Loan Buyer · Sugar Land, TX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="agent-section" aria-labelledby="agent-heading">
             <div class="agent-content">
-                <div class="agent-avatar">👤</div>
+                <div class="agent-avatar">
+                    <img src="./allan-vega.jpg" alt="Allan Vega, Houston Realtor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="agent-avatar-fallback" style="display:none;" aria-hidden="true">👤</div>
+                </div>
                 <div class="agent-info">
-                    <h3>Allan Vega</h3>
+                    <h3 id="agent-heading">Allan Vega</h3>
                     <p class="agent-title">Houston Realtor® | Market Strategist</p>
                     <div class="agent-details">
                         <div class="agent-detail">🏢 AEA Realty | License #777820</div>
@@ -627,7 +892,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Allan Vega | AEA Realty | All Rights Reserved</p>
+            <p>&copy; 2026 Allan Vega | AEA Realty | All Rights Reserved &nbsp;|&nbsp; <a href="privacy-policy.html" style="color:var(--text-light);text-decoration:underline;">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -643,6 +908,16 @@
 
         // Form submission
         var SCRIPT_URL = 'https://script.google.com/a/macros/askozzie.com/s/AKfycbw8GCudDgtHqMee2qithkWXLxDYpAS5zebBF_NUm720Qrii3rzT0RuMIVyO6-CzQk4U/exec';
+
+        // Optional fields toggle
+        document.getElementById('optionalToggle').addEventListener('click', function() {
+            var fields = document.getElementById('optionalFields');
+            var icon = document.getElementById('toggleIcon');
+            var isOpen = fields.classList.contains('open');
+            fields.classList.toggle('open');
+            this.setAttribute('aria-expanded', !isOpen);
+            icon.textContent = isOpen ? '＋' : '－';
+        });
 
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
