@@ -24,13 +24,15 @@ homebuyer-guide/
 ├── guide.html                    # Redirect page → Google Drive PDF (Houston Homebuyer Guide)
 ├── new-construction-guide.html   # Redirect page → Google Drive PDF (New Construction Guide)
 ├── privacy-policy.html           # Privacy policy page (CCPA/GDPR compliance, ad platform requirement)
-├── allan-vega.jpg                # Agent headshot — referenced by index.html and OG image tags
+├── allan-vega.jpg                # Agent headshot — NOT currently committed; see note below
 ├── README.md                     # Minimal project description
 ├── CLAUDE.md                     # This file
 └── .github/
     └── workflows/
         └── claude.yml            # GitHub Actions: Claude Code bot triggered by @claude mentions
 ```
+
+> **Note on `allan-vega.jpg`:** This file is referenced in `index.html` (`./allan-vega.jpg`) and in the OG/Twitter meta tags (as `https://www.loveyourdirt.com/allan-vega.jpg`), but it is **not currently committed to the repository**. The `<img>` tag has an `onerror` fallback (👤 emoji) that displays when the file is absent. Upload the headshot to the repo root to activate the photo on the live site.
 
 This is a **zero-dependency, no-build static site**. There is no package.json, no npm, no bundler, no framework.
 
@@ -49,7 +51,15 @@ This is a **zero-dependency, no-build static site**. There is no package.json, n
 - Update the phone number or agent name if contact info changes
 - Do **not** add complex CSS/JS — these pages are intentionally minimal; users see them for under 2 seconds
 
-**Agent info in redirect page bodies:** Both pages display brief agent contact info in the `<body>` while the redirect is in progress. Note there is a minor inconsistency between them — `guide.html` shows "Allan Vega – Realtor® | AEA Realty | 📲 281-865-7146" while `new-construction-guide.html` omits "AEA Realty". Keep them in sync when updating contact info.
+**Agent info in redirect page bodies:** Both pages display brief agent contact info in the `<body>` while the redirect is in progress. There are currently several inconsistencies between them:
+
+| Detail | `guide.html` | `new-construction-guide.html` |
+|--------|-------------|-------------------------------|
+| Brokerage | ✅ "AEA Realty" shown | ❌ Omitted |
+| Phone format | Separate `<p>` line with `📲` emoji | Same line as name, no emoji |
+| Full display | "Allan Vega – Realtor® \| AEA Realty" then "📲 281-865-7146" | "Allan Vega – Realtor® \| 281-865-7146" |
+
+Keep both pages in sync when updating contact info.
 
 **Note:** These pages are the delivery mechanism for the guides. The lead-capture form in `index.html` does **not** redirect to these pages directly — the guide link is typically delivered via the follow-up email sent by the Google Apps Script backend. These pages may be linked from email campaigns, QR codes, or social ads independently.
 
@@ -158,7 +168,15 @@ Three `.testimonial-card` elements in a responsive grid (`repeat(auto-fit, minma
 - `.testimonial-quote` — italic quote text
 - `.testimonial-author` — `.testimonial-name` + `.testimonial-meta` (role/city)
 
-**Important:** The current testimonials are placeholder content. Replace them with real client reviews before publishing. Keep the same HTML structure.
+**Current testimonials (verify authenticity before driving paid traffic):**
+
+| Name | Role | Location |
+|------|------|----------|
+| Maria & Carlos R. | First-Time Buyers | Katy, TX |
+| DeShawn M. | New Construction Buyer | Cypress, TX |
+| Sgt. James T. (Ret.) | VA Loan Buyer | Sugar Land, TX |
+
+These appear to be real client names and cover all three target audiences (first-time buyers, new construction, VA loans). Confirm each is a verified review before running paid ads. Keep the same HTML structure when updating.
 
 ### Benefit Cards (`.benefit-card`)
 
@@ -270,11 +288,11 @@ Each card follows this template — maintain this structure:
 ```
 
 ### Updating agent contact info
-Agent details are in `.agent-section` (around line 612). The agent currently has **two phone numbers**:
+Agent details are in `.agent-section` (around line 874). The agent currently has **two phone numbers**:
 - Primary: `281-865-7146`
 - Secondary: `(832) 403-3681`
 
-Both are linked with `href="tel:..."`. Update the name, title, license, phones, and email links there. The header quick-contact links (around line 483) show only the primary phone and email — keep those in sync when the primary contact changes.
+Both are linked with `href="tel:..."`. Update the name, title, license, phones, and email links there. The header quick-contact links (around line 684) show only the primary phone and email — keep those in sync when the primary contact changes.
 
 ### Updating timeline or budget dropdown options
 Edit the `<option>` elements inside `#timeline` and `#budget` selects. Keep the `value` attribute consistent with what should be sent to the form backend.
@@ -288,7 +306,7 @@ Edit the `<option>` elements inside `#timeline` and `#budget` selects. Keep the 
 The `claude.yml` workflow instructions reference this as a common task (DR Horton, Lennar, Perry Homes, etc.). When adding builder deal cards, follow the same card structure as `.benefit-card` (emoji icon, heading, description). If a dedicated builder-deals section is created, give it a new class name (e.g., `.builder-section`) and mirror the CSS pattern of `.agent-section` or `.form-section`. Always include an expiration date for promotional content.
 
 ### Updating the form endpoint
-Change the `SCRIPT_URL` variable at the top of the `<script>` block (around line 645).
+Change the `SCRIPT_URL` variable at the top of the `<script>` block (around line 910).
 
 ### Updating the footer copyright year
 The footer currently reads `© 2026 Allan Vega | AEA Realty | All Rights Reserved`. Update the year as needed — no CSS or JS changes required, just edit the text. The footer also contains a link to `privacy-policy.html`.
@@ -297,7 +315,7 @@ The footer currently reads `© 2026 Allan Vega | AEA Realty | All Rights Reserve
 Replace `allan-vega.jpg` in the repository root with a new photo. The `<img>` in `.agent-avatar` has an `onerror` fallback that shows the `👤` emoji if the file is missing or fails to load. The OG image meta tags also reference this file — update the URL there too if hosting changes.
 
 ### Updating testimonials
-Testimonial cards are in `.testimonials-section` inside `index.html`. Replace the placeholder names, quotes, and buyer types with real client reviews. Keep the existing card HTML structure (`.testimonial-card > .testimonial-stars + .testimonial-quote + .testimonial-author`).
+Testimonial cards are in `.testimonials-section` inside `index.html`. Three named testimonials are currently in place (Maria & Carlos R., DeShawn M., Sgt. James T.). Verify these are real before driving paid traffic, or replace with confirmed reviews. Keep the existing card HTML structure (`.testimonial-card > .testimonial-stars + .testimonial-quote + .testimonial-author`).
 
 ### Updating social proof stats
 The `.social-proof-banner` contains three `.proof-stat` blocks. Edit the `.stat-number` and `.stat-label` text directly in `index.html`. Update these as milestones are reached (e.g., "75+ Houston families helped").
@@ -356,6 +374,6 @@ It runs `anthropics/claude-code-action@beta` with write permissions and custom i
 10. **Do not change the form endpoint** unless explicitly asked — changing it will break lead capture.
 11. **Preserve decorative elements:** Do not remove `.bg-decoration` or `.form-section::before` — they are intentional design elements, not dead code.
 12. **Keep redirect pages minimal:** `guide.html` and `new-construction-guide.html` are intentionally plain. Do not add frameworks, styles, or scripts — users see them for under 2 seconds before being forwarded to Google Drive.
-13. **Testimonials must be real:** The testimonial cards in `.testimonials-section` currently contain placeholder copy. Replace them with verified real client reviews before driving paid traffic to the page.
-14. **Agent photo is required:** `allan-vega.jpg` must exist in the repo root for the headshot and OG image to work. A graceful fallback emoji is in place if the file is missing.
+13. **Testimonials must be verified:** The testimonial cards in `.testimonials-section` currently display named clients (Maria & Carlos R., DeShawn M., Sgt. James T.). Confirm these are verified real reviews before driving paid traffic to the page.
+14. **Agent photo is missing from the repo:** `allan-vega.jpg` is referenced by `index.html` and the OG meta tags but is **not currently committed**. Add the headshot file to the repo root to activate it. A graceful fallback emoji (👤) is already in place for when the file is absent.
 15. **Privacy policy is live:** `privacy-policy.html` is required for Meta/Google ad compliance. Do not delete it. Update it if contact details or third-party services change.
