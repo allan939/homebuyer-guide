@@ -74,7 +74,7 @@ Keep both pages in sync when updating contact info.
 | Scripts | Inline `<script>` blocks inside `index.html` — vanilla ES6 JavaScript |
 | Fonts | Google Fonts: **Playfair Display** (headings) + **DM Sans** (body) |
 | Form backend | Google Apps Script macro (POST endpoint, stores leads in Google Sheets) |
-| Analytics | Google Analytics 4 (`G-4L3ZXGG3JZ`) + Meta Pixel (`1792763298349619`) |
+| Analytics | Google Analytics 4 (`G-4L3ZXGG3JZ`) + Meta Pixel (`2075120536666616`) |
 | Hosting | Static file — served as-is from any web server |
 | CI/CD | GitHub Actions with `anthropics/claude-code-action@beta` |
 
@@ -326,7 +326,7 @@ The `.social-proof-banner` contains three `.proof-stat` blocks. Edit the `.stat-
 
 | Service | ID |
 |---------|----|
-| Meta Pixel (Facebook) | `1792763298349619` |
+| Meta Pixel (Facebook) | `2075120536666616` |
 | Google Analytics 4 | `G-4L3ZXGG3JZ` |
 
 Both scripts load asynchronously in `<head>`. The Lead event fires after successful form submission. Do not remove or break these tracking integrations.
